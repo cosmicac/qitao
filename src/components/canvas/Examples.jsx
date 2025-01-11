@@ -4,7 +4,7 @@ import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { useMemo, useRef, useState } from 'react'
-import { Line, useCursor, MeshDistortMaterial } from '@react-three/drei'
+import { Line, useCursor, MeshDistortMaterial, useTexture } from '@react-three/drei'
 import { useRouter } from 'next/navigation'
 
 export const Blob = ({ route = '/', ...props }) => {
@@ -61,8 +61,33 @@ export function Duck(props) {
 
   return <primitive object={scene} {...props} />
 }
+
 export function Dog(props) {
   const { scene } = useGLTF('/dog.glb')
 
   return <primitive object={scene} {...props} />
+}
+
+export const Basketball = () => {
+  const meshRef = useRef()
+  const [colorMap, metallicMap, normalMap, roughnessMap] = useTexture([
+    '/ball-color.png',
+    '/ball-metallic.png',
+    '/ball-normal.png',
+    '/ball-roughness.png',
+  ])
+
+  return (
+    <group>
+      <mesh ref={meshRef}>
+        <sphereGeometry args={[1, 64, 64]} />
+        <meshStandardMaterial
+          map={colorMap}
+          normalMap={normalMap}
+          metallicMap={metallicMap}
+          roughnessMap={roughnessMap}
+        />
+      </mesh>
+    </group>
+  )
 }
