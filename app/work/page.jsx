@@ -2,17 +2,32 @@ import Link from "next/link";
 import Headline from "@/components/text/headline";
 import Section from "@/components/text/section";
 import Body from "@/components/text/body";
+import LinkOut from "@/components/icons/link-out";
 
 const Work = () => {
   return (
     <>
-      <Link href="/">Back</Link>
       <div className="flex flex-col gap-4">
         <div className="text-2xl font-bold">Work</div>
-        <div className="text-sm">For more details, check out my resume.</div>
+        <div className="text-sm flex items-center gap-1">
+          For more details, check out my{" "}
+          <a
+            href="https://drive.google.com/file/d/1YDd6evvEnYB7qBExqbHLdMzQ8RiXRcG0/view?usp=sharing"
+            className="inline flex items-center gap-0.5"
+            target="_blank"
+            rel="noreferrer"
+          >
+            resume
+            <LinkOut size="size-3" />.
+          </a>
+        </div>
         <div>
           <Section>
-            <Headline title="Affinity" dateRange="July 2018 - Present" />
+            <Headline
+              title="Affinity"
+              titleUrl="https://www.affinity.co"
+              dateRange="July 2018 - Present"
+            />
             <div className="text-base font-semibold">Senior Software Engineer II</div>
             <Body>
               I currently work at Affinity, a B2B platform for venture capital and other investment
@@ -27,7 +42,11 @@ const Work = () => {
           </Section>
         </div>
         <Section>
-          <Headline title="Amazon Lab126" dateRange="May - August 2017" />
+          <Headline
+            title="Amazon Lab126"
+            titleUrl="https://amazon.jobs/content/en/teams/devices-and-services/lab126"
+            dateRange="May - August 2017"
+          />
           <div className="text-base font-semibold">Software Engineering Intern</div>
           <Body>
             I interned at Amazon Lab126, on a team responsible for device metrics. I built a service
@@ -36,7 +55,11 @@ const Work = () => {
           </Body>
         </Section>
         <Section>
-          <Headline title="UC Berkeley" dateRange="Fall 2014- Fall 2018" />
+          <Headline
+            title="UC Berkeley"
+            titleUrl="https://www.berkeley.edu"
+            dateRange="Fall 2014- Fall 2018"
+          />
           <div>
             <Body>B.A. Computer Science</Body>
             <Body>B.A. Statistics</Body>

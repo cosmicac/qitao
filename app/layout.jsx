@@ -1,6 +1,8 @@
 import { Inter } from "next/font/google";
 
 import { Layout } from "@/components/dom/Layout";
+import Header from "@/components/header";
+
 import "@/global.css";
 
 // If loading a variable font, you don't need to specify the font weight
@@ -25,7 +27,12 @@ export default function RootLayout({ children }) {
       <body>
         {/* To avoid FOUT with styled-components wrap Layout with StyledComponentsRegistry https://beta.nextjs.org/docs/styling/css-in-js#styled-components */}
         <Layout>
-          <div className="py-12 px-8">{children}</div>
+          <div className="flex flex-col items-center">
+            <div className="max-w-screen-md pt-12 px-8">
+              <Header />
+              {children}
+            </div>
+          </div>
         </Layout>
       </body>
     </html>

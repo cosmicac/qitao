@@ -55,17 +55,6 @@ const Home = () => {
             games, and work on various side projects.
           </div>
         </Section>
-        <div className="flex flex-col gap-2">
-          <Link href="/work">
-            <div className="text-lg font-medium">Work</div>
-          </Link>
-          <Link href="/projects">
-            <div className="text-lg font-medium">Projects</div>
-          </Link>
-          <Link href="/volunteering">
-            <div className="text-lg font-medium">Volunteering</div>
-          </Link>
-        </div>
         {/*
         <View orbit className='h-96'>
           <Suspense fallback={null}>
