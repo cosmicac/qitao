@@ -13,7 +13,7 @@ const Work = () => {
           For more details, check out my{" "}
           <a
             href="https://drive.google.com/file/d/1YDd6evvEnYB7qBExqbHLdMzQ8RiXRcG0/view?usp=sharing"
-            className="inline flex items-center gap-0.5"
+            className="flex items-center gap-0.5"
             target="_blank"
             rel="noreferrer"
           >
