@@ -6,7 +6,7 @@ import Link from "next/link";
 import Section from "@/components/text/section";
 
 const Basketball = dynamic(
-  () => import("@/components/canvas/Examples").then((mod) => mod.Basketball),
+  () => import("@/components/canvas/basketball").then((mod) => mod.Basketball),
   { ssr: false },
 );
 
@@ -32,6 +32,7 @@ const View = dynamic(() => import("@/components/canvas/View").then((mod) => mod.
     </div>
   ),
 });
+
 const Common = dynamic(() => import("@/components/canvas/View").then((mod) => mod.Common), {
   ssr: false,
 });
@@ -55,14 +56,12 @@ const Home = () => {
             games, and work on various side projects.
           </div>
         </Section>
-        {/*
-        <View orbit className='h-96'>
+        <View orbit className="h-96">
           <Suspense fallback={null}>
-            <Basketball scale={1} position={[0, 0, 0]} rotation={[0.0, -0.3, 0]} />
+            <Basketball scale={1} position={[0, 0, 0]} rotation={[1.0, 0.0, -0.3]} />
             <Common />
           </Suspense>
         </View>
-        */}
       </div>
     </>
   );
