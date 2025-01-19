@@ -1,9 +1,10 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import Section from "@/components/text/section";
+import Spinner from "@/components/spinner";
+import { Text3D, Center } from "@react-three/drei";
 
 const Basketball = dynamic(
   () => import("@/components/canvas/basketball").then((mod) => mod.Basketball),
@@ -12,25 +13,7 @@ const Basketball = dynamic(
 
 const View = dynamic(() => import("@/components/canvas/View").then((mod) => mod.View), {
   ssr: false,
-  loading: () => (
-    <div className="flex h-96 w-full flex-col items-center justify-center">
-      <svg className="-ml-1 mr-3 h-5 w-5 animate-spin text-black" fill="none" viewBox="0 0 24 24">
-        <circle
-          className="opacity-25"
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          strokeWidth="4"
-        />
-        <path
-          className="opacity-75"
-          fill="currentColor"
-          d="M4 12a8 8 0 0 1 8-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 0 1 4 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-        />
-      </svg>
-    </div>
-  ),
+  loading: Spinner,
 });
 
 const Common = dynamic(() => import("@/components/canvas/View").then((mod) => mod.Common), {
@@ -38,6 +21,8 @@ const Common = dynamic(() => import("@/components/canvas/View").then((mod) => mo
 });
 
 const Home = () => {
+  const [showText, setShowText] = useState(true);
+
   return (
     <>
       <div className="flex flex-col gap-4">
@@ -58,7 +43,30 @@ const Home = () => {
         </Section>
         <View orbit className="h-96">
           <Suspense fallback={null}>
-            <Basketball scale={1} position={[0, 0, 0]} rotation={[1.0, 0.0, -0.3]} />
+            {showText && (
+              <Center position={[0, 1.1, 0]} rotation={[-0.25, -0.2, 0]}>
+                <Text3D
+                  font={"/inter_3d.json"}
+                  curveSegments={32}
+                  bevelEnabled
+                  bevelSize={0.01}
+                  bevelThickness={0.05}
+                  height={0.02}
+                  lineHeight={0.5}
+                  letterSpacing={-0.01}
+                  size={0.2}
+                >
+                  go warriors!
+                  <meshNormalMaterial />
+                </Text3D>
+              </Center>
+            )}
+            <Basketball
+              scale={0.8}
+              position={[0, 0, 0]}
+              rotation={[1.0, 0.0, -0.3]}
+              onClick={() => setShowText(true)}
+            />
             <Common />
           </Suspense>
         </View>
